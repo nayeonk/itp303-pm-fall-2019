@@ -1,0 +1,142 @@
+/* Defined and loaded the font file */ 
+@font-face {
+	font-family: "Rushing Nightshade";
+	src: url("rushing/rushing.ttf");
+}
+html,body {
+	padding: 0;
+	margin: 0;
+}
+body {
+	background-color: #4d7f96;
+	font-family: 'Muli', sans-serif;
+}
+#header {
+	background-image: url('http://303.itpwebdev.com/~ta303/assets/the-office/theoffice.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 110px 0px;
+}
+#header h1 {
+	font-family: "Rushing Nightshade", Arial, sans-serif;
+	font-weight: normal;
+	font-size: 60px;
+	margin: 0;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+	text-shadow: 4px 3px 0 #7A7A7A;
+}
+#main {
+	/*width: 1000px;*/
+	width: 90%;
+
+	/* When #main reaches width of 1000px, 
+	STOP growing, ignore the %*/
+	max-width: 1000px;
+
+	margin: 0 auto;
+	background-color: red;
+}
+#main:after {
+	content: "";
+	clear: both;
+	display: table;
+}
+#sidebar {
+	float: left;
+	/*width: 180px;*/
+	width: 20%;
+	padding-left: 10px;
+	padding-right: 10px;
+	/* Magical property that solves padding 
+	and width issues */
+	box-sizing: border-box;
+
+	text-align: center;
+	background-color: #d9f2fd;
+}
+#sidebar img {
+	width: 100%;
+}
+#content {
+	float: left;
+	/*width: 780px;*/
+	width: 80%;
+	padding: 0px 10px;
+	/* Magical property that solves padding 
+	and width issues */
+	box-sizing: border-box;
+
+	background-color: white;
+}
+#content .figure {
+	text-align: center;
+}
+#footer {
+	background-color: #263f4b;
+	color: white;
+	padding: 10px 0;
+	text-align: center;
+}
+/* Screen sizes 0 - 768px */
+@media (max-width: 768px) {
+	#header h1 {
+		color: red;
+	}
+	#main {
+		width: 100%;
+	}
+	#sidebar {
+		width: 100%;
+	}
+	#sidebar .character {
+		width: 24%;
+		float: left;
+		margin-left: 0.5%;
+		margin-right: 0.5%;
+
+		/* with margins, i cant do box-sizing */
+		/*box-sizing: border-box;*/
+	}
+	#content {
+		width: 100%;
+	}
+}
+/* Screen sizes 0 - 576px */
+@media (max-width: 576px) {
+	#header h1 {
+		color: green;
+	}
+	#sidebar .character {
+		width: 48%;
+		margin-left: 1%;
+		margin-right: 1%;
+	}
+	#content img {
+		/*display: none;*/
+		visibility: hidden;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
