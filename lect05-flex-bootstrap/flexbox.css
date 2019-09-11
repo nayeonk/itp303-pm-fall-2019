@@ -1,0 +1,66 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Oswald', sans-serif;
+}
+* {
+	box-sizing: border-box;
+}
+
+/* Colors for each box. */
+.box1 { background-color: #011627; }
+.box2 { background-color: #EB5160; }
+.box3 { background-color: #030301; }
+.box4 { background-color: #00D9C0; }
+.box5 { background-color: #FF0022; }
+
+/* The parent */
+.container {
+  border: 10px solid skyblue;
+  display: flex;
+  height: 500px;
+  /* Flex direction defines the MAIN AXIS */
+  /*flex-direction: column;*/
+
+  /*flex-wrap: wrap;*/
+
+  /* Define alignment along the MAIN AXIS (default is left to right) */
+  justify-content: center;
+
+  /* Defines alignment along the CROSS AXIS (default is top to bottom) */
+  align-items: center;
+}
+@media(max-width: 768px) {
+	.container {
+		flex-direction: column;
+	}
+}
+
+/* .container's direct children */
+.box {
+	color: white;
+	font-size: 28px;
+	width: 100px;/*
+	margin-right: 10px;*/
+}
+.box2 {
+	/*align-self: flex-start;*/
+
+	/* by default, all flex children have an order of ZERO. The higher order the item has, the later it will appear. */
+	order: 10;
+}
+.box3 {
+	order: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
