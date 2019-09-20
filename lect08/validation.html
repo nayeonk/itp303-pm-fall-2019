@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A Form</title>
+	<style>
+		.form-row {
+			margin-bottom: 10px;
+			display: flex;
+		}
+		label {
+			width: 100px;
+		}
+		textarea {
+			width: 300px;
+			height: 400px;
+		}
+		.red {
+			color: red;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>Form</h1>
+	<form id="form">
+		<div class="form-row">
+			<label for="name-input">Name:</label>
+			<input id="name-input" type="text" placeholder="Your full name" name="name"/>
+		</div>
+		
+		<div class="form-row">
+			<label for="age-input">Age:</label>
+			<input id="age-input" type="text" placeholder="Age" name="age" />
+		</div>
+
+		<div class="form-row">
+			<label for="year-input">Year:</label>
+			<select id="year-input">
+				<option>Freshman</option>
+				<option>Sophomore</option>
+				<option>Junior</option>
+				<option>Senior</option>
+			</select>
+		</div>
+
+		<div class="form-row">
+			<label for="comments-input">Comments:</label>
+			<textarea id="comments-input"></textarea>
+		</div>
+
+		<button type="submit">Submit</button>
+		<!-- This is where error message would display -->
+		<div id="message"></div>
+	</form>
+
+<script>
+
+document.querySelector("#name-input").oninput = function() {
+	// console.log("user is typing inside the text field");
+
+	let nameInput = document.querySelector("#name-input").value;
+
+	console.log(nameInput);
+	console.log(nameInput.length);
+
+	if( nameInput.length > 3) {
+		console.log("BADDDDDD!");
+		// alert("your name is too long!!");
+		// Make the label's color red if length is too long
+		//this.previousElementSibling.style.color = "red";
+		// this.previousElementSibling.style.fontWeight = "bold";
+
+		// Instead of writing inline CSS w/ JavaScript, I can also add/remove CSS classes
+		this.previousElementSibling.classList.add("red");
+	}
+	else {
+		//this.previousElementSibling.style.color = "black";
+		//this.previousElementSibling.style.fontWeight = "normal";
+		this.previousElementSibling.classList.remove("red");
+	}
+}
+
+// Event handler for when user tries to submit the #form
+document.querySelector("#form").onsubmit = function(event) {
+	// prevent the form from doing its normal behavior, which is submitting the form.
+	event.preventDefault();
+
+	console.log(event);
+
+	console.log("form is submitted");
+
+
+	// Check that the name is not longer than 3 characters
+	// .trim() deletes all leading and trailing whitespaces
+	if( document.querySelector("#name-input").value.trim().length > 3 ) {
+		// alert("too long");
+		document.querySelector("#message").innerHTML = "Please make sure your name is under four characters";
+	}
+	else if( document.querySelector("#name-input").value.trim().length == 0) {
+		document.querySelector("#message").innerHTML = "Please fill out your name";
+	}
+	else {
+		document.querySelector("#message").innerHTML = "Everything is great! Thank you for your submission.";
+		// submit the form now - something like this
+		// document.querySelector("#form").submit();
+	}
+}
+
+
+
+//.onkeypress
+//.ondoubleclick
+//.onscroll
+
+
+
+let number = 7;
+let text = "7";
+
+console.log( number + 7);
+console.log( text + 7);
+
+// Convert string to numbers
+text = parseInt(text);
+console.log( text + 7);
+
+console.log( 1 / 2 );
+
+console.log( 0.1 + 0.2 );
+console.log( 0.3 + 0.2 );
+
+// One way to get around weird floating point artithmetic
+let num1 = 0.1;
+let num2 = 0.2;
+
+// Convert floating points to INTEGERS
+num1 = num1 * 10;
+num2 = num2 * 10;
+
+// Calculate using integers
+let total = num1 + num2;
+
+// Convert integers back into floating points
+total = total / 10;
+
+console.log(total);
+
+// JS has a massive Math library
+console.log(Math.PI);
+
+
+let firstname = "nayeon"
+let lastname = "kim";
+
+console.log( firstname + " " + lastname);
+
+// strings are an array of characters
+console.log( firstname[0]  );
+console.log( firstname.length  );
+console.log( firstname.indexOf("n")  );
+console.log( firstname.indexOf("z")  );
+console.log( firstname.lastIndexOf("n")  );
+console.log( firstname.toUpperCase()  );
+console.log( firstname.indexOf("nay")  );
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
