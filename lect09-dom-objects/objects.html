@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Objects</title>
+	<style>
+		#people {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<h1>People</h1>
+	<div id="people">
+	</div>
+
+<script>
+// Two ways to create objects in JS
+
+// 1. Literal syntax
+let tommy = {
+	name: "Tommy Trojan",
+	phone: {
+		cell: "123-123-1234",
+		work: "111-111-1111"
+	},
+	age: 18,
+	hobbies: ["standing", "taking photos", "modeling"],
+	greet: function() {
+		console.log("Hi!!!");
+	}
+}
+
+let traveler = {
+	name: "Traveler van Horse",
+	phone: {
+		cell: "123-123-1234",
+		work: "111-111-1111"
+	},
+	age: 22,
+	hobbies: ["standing", "taking photos", "modeling"],
+	greet: function() {
+		console.log("Hi!!!");
+		// return "Hi!!";
+	}
+}
+
+console.log(tommy);
+// Access any properties/methods of the object easily
+console.log(tommy.name);
+console.log(tommy.age);
+console.log(tommy.hobbies[0]);
+console.log(tommy.phone.cell);
+tommy.greet();
+console.log(traveler);
+
+
+// 2. Constructor Function Syntax
+function Person(fullName, age) {
+	this.name = fullName;
+	this.age = age;
+	this.greet = function() {
+		console.log("Hi!!");
+	}
+}
+
+// Instantiate Person
+let harry = new Person("Harry Potter", 44);
+let hermione = new Person("Hermione Granger", 44);
+
+console.log(harry);
+console.log(hermione);
+
+
+// When working with a lot of objects, we can store them in an array!
+let peopleList = [];
+
+peopleList.push(tommy, traveler, harry, hermione);
+
+console.log("------ LIST STARTS HERE");
+console.log(peopleList);
+
+
+// Display the objects i just created. Append it to #people
+
+let people = document.querySelector("#people");
+
+for( let i = 0; i < peopleList.length; i++ ) {
+
+	let pElement = document.createElement("p");
+	pElement.innerHTML = peopleList[i].name + " - " + peopleList[i].age;
+	console.log(pElement);
+	people.appendChild(pElement);
+
+}
+
+// To delete an array
+// peopleList.pop();
+
+peopleList.length = 0;
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
