@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AJAX and PHP</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<style>
+		li {
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div id="test-output"></div>
+			<h1 class="col-12 mt-3">Song DB Search</h1>
+		</div> <!-- .row -->
+
+		<div class="row">
+			<form action="" method="" class="form-inline col-12 mt-3">
+				<div class="form-group">
+					<label for="search-term-id" class="sr-only">Search:</label>
+					<input type="text" class="form-control" id="search-term-id" placeholder="Search..." name="search-term">
+				</div>
+				<button type="submit" class="btn btn-primary ml-3">Search</button>
+			</form>
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<h4 class="col-12 mt-4">Search Results:</h4>
+
+			<div class="col-12">
+				<ol id="search-results">
+					<li>Track Name 1</li>
+					<li>Track Name 2</li>
+				</ol>
+			</div>
+
+		</div> <!-- .row -->
+	</div> <!-- .container -->
+
+<script>
+
+// When the user submits the form (aka clicks on the "search" button), make a GET request via AJAX to backend.php. Backend.php will search the DB and return results.
+document.querySelector("form").onsubmit = function(event) {
+
+	event.preventDefault();
+
+	// Get the user's search term input
+	let searchInput = document.querySelector("#search-term-id").value.trim();
+
+	// Make a GET request via AJAX
+	ajaxGet("backend.php?term=" + searchInput, function(results) {
+
+		// This code gets run if we get a succesful response from backend.php
+		console.log(results);
+
+		// Convert results json string to JS objects
+		results = JSON.parse(results);
+		console.log(results);
+
+		// Grab the parent that will hold all the <li> elements (the <ol>)
+		let resultsList = document.querySelector("#search-results");
+
+		// Clear out the previous results
+		while(resultsList.hasChildNodes()) {
+			resultsList.removeChild(resultsList.lastChild);
+		}
+
+		// Create a <li> for every result and append it to the parent <ol>
+		for(let i = 0; i < results.length; i++) {
+			let li = document.createElement("li");
+			li.innerHTML = results[i].name;
+			resultsList.appendChild(li);
+		}
+
+	});
+
+}
+
+
+
+// Make an ajax call. When ajax is completed, runs the second parameter, which is an anonymous function.
+// ajaxGet("backend.php?firstName=john&lastName=doe", function(results) {
+// 	// The code below gets run when AJAX call to backend.php is completed
+// 	console.log(results);
+
+// 	// Convert JSON string into JS objects
+// 	results = JSON.parse(results);
+// 	console.log(results);
+
+// 	// Display results on the browser
+// 	document.querySelector("#test-output").innerHTML = results.first_name + results.phone.cell;
+
+// });
+
+function ajaxGet(endpointUrl, returnFunction){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', endpointUrl, true);
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			if (xhr.status == 200) {
+				// When ajax call is complete, call this function, pass a string with the response
+				returnFunction( xhr.responseText );
+			} else {
+				alert('AJAX Error.');
+				console.log(xhr.status);
+			}
+		}
+	}
+	xhr.send();
+};
+
+// Send a POST request via AJAX
+// ajaxPost("backend.php", "firstName=John&lastName=Doe", function(results) {
+// 	// this function runs when post request is complete
+// 	console.log(results);
+// });
+
+function ajaxPost(endpointUrl, postdata, returnFunction){
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', endpointUrl, true);
+	// When sending POST requests, need to add some info in the header
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			if (xhr.status == 200) {
+				returnFunction( xhr.responseText );
+			} else {
+				alert('AJAX Error.');
+				console.log(xhr.status);
+			}
+		}
+	}
+	// Send postdata separately
+	xhr.send(postdata);
+};
+
+</script>
+
+</body>
+</html>
